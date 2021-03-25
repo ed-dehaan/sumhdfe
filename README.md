@@ -5,7 +5,7 @@
 See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for explanation of the diagnostics produced by sumhdfe. Sumhdfe complements Sergio Correia's <a href="https://github.com/sergiocorreia/reghdfe"><strong>reghdfe</strong></a> Stata package for fixed effect regression models.
 
 <br>   
-If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
+If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). <i>Using and Interpreting Fixed Effects Models</i>. Available at SSRN: https://ssrn.com/abstract=3699777.
    
  <br> <br>
   <span><strong>Authors:</strong> <br>
