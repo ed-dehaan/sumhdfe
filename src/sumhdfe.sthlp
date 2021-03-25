@@ -68,7 +68,7 @@
 {synopt:{opt tab:les(str)}}show only a subset of the sumhdfe tables; default is {it:"fe sum zero rss"}{p_end}
 {synopt:{opt out:put}}output a consolidated summary statistics table. NOT YET FUNCTIONAL. {p_end}
 {synoptline}
-{p 4 6 2}Note: under the postestimation syntax, {depvar} and all [{indepvars}] from {cmd:reghdfe} are included by default unless [{varlist}] is specified. If [{varlist}] is specified, variables must be a subset of those used in the preceding regression{p_end}
+{p 4 6 2}Note: under the postestimation syntax, {depvar} and all [{indepvars}] from {cmd:reghdfe} are included by default unless [{varlist}] is specified. If [{varlist}] is specified, variables must be a subset of those used in the preceding regression.{p_end}
 
 
 {marker description}{...}
