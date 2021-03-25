@@ -69,11 +69,7 @@ See the Stata help file for usage instructions.
 
 The following files are in this Github directory
 
-1) make_data.do - 		this do file creates a test dataset
-2) sumhdfe.ado - 		rough version of the ado file 
-3) sumhdfe_data.dta - 	dataset produced by make_data.do
-4) sumhdfe_example.do -	simple do file to call sumhdfe using the example data
-5) sumhdfe example table - Excel file showing table mockup.  Contains notes on what else to include
+1) ...
 
 <h2 id="features">Features List</h2>
 
