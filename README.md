@@ -1,14 +1,11 @@
-<p align="center">  
- <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</p>
 
 <p align="left">
   <strong>SUMHDFE</strong> is a Stata package that produces summary and diagnostic information to characterize the frequency of fixed effects and within-fixed-effect variation in variables in linear models.  
  
 See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for explanation of the diagnostics produced by sumhdfe. Sumhdfe complements Sergio Correia's <a href="https://github.com/sergiocorreia/reghdfe"><strong>reghdfe</strong></a> Stata package for fixed effect regression models.
-   
-   
-If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
+
+<br>   
+If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). <i>Using and Interpreting Fixed Effects Models</i>. Available at SSRN: https://ssrn.com/abstract=3699777.
    
  <br> <br>
   <span><strong>Authors:</strong> <br>
@@ -23,6 +20,7 @@ If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). *Us
 
   * [Install Sumhdfe](#install) 
   * [Usage & Features](#using)
+  * [Pending Items](#pending)
   * [File List](#files)
   * [Changelog](#changelog)
   * [Questions?](#questions)
@@ -62,6 +60,12 @@ net install sumhdfe, from("`devDir'\src")
 <!--- You can use `sumhdfe` in the following way: --->
 
 See the Stata help file.
+
+
+<h2 id="pending">Pending Items</h2>
+
+1)  Summary output table to csv/excel/tex
+
 
 <h2 id="files">Files</h2>
 
