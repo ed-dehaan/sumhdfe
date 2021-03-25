@@ -20,6 +20,7 @@ If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). *Us
 
   * [Install Sumhdfe](#install) 
   * [Usage & Features](#using)
+  * [Pending Items](#pending)
   * [File List](#files)
   * [Changelog](#changelog)
   * [Questions?](#questions)
@@ -59,6 +60,12 @@ net install sumhdfe, from("`devDir'\src")
 <!--- You can use `sumhdfe` in the following way: --->
 
 See the Stata help file.
+
+
+<h2 id="pending">Pending Items</h2>
+
+1)  Summary output table to csv/excel/tex
+
 
 <h2 id="files">Files</h2>
 
