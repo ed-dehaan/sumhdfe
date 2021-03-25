@@ -3,9 +3,9 @@
 </p>
 
 <p align="left">
-  <strong>SUMHDFE</strong> is a Stata package that produces summary and diagnostic information to characterize the frequency of fixed effects and within-fixed-effect variation in variables in linear models.  See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for explanation of the diagnostics produced by sumhdfe. Sumhdfe complements Sergio Correia's <a href="https://github.com/sergiocorreia/reghdfe">**reghdfe**</a> Stata package for implementing high-frequency fixed effect models.
+  <strong>SUMHDFE</strong> is a Stata package that produces summary and diagnostic information to characterize the frequency of fixed effects and within-fixed-effect variation in variables in linear models.  See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for explanation of the diagnostics produced by sumhdfe. Sumhdfe complements Sergio Correia's <a href="https://github.com/sergiocorreia/reghdfe"><strong>reghdfe</strong></a> Stata package for implementing high-frequency fixed effect models.
    
-If you find these diagnostics to be useful, consider citing: deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
+If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
    
  <br> <br>
   <span><strong>Authors:</strong> <br>
@@ -19,9 +19,8 @@ If you find these diagnostics to be useful, consider citing: deHaan, Ed. (2021).
 ## Table of contents
 
   * [Install Sumhdfe](#install) 
-  * [Using sumhdfe](#using)
+  * [Usage & Features](#using)
   * [File List](#files)
-  * [Features List](#features)
   * [Changelog](#changelog)
   * [Questions?](#questions)
   * [License](#license)
@@ -45,10 +44,6 @@ cap ado uninstall sumhdfe
 net install sumhdfe, from("`devDir'\src")
 ```
 
-### TODO
-
-- If we receive `sumhfe x2 x3` only summarize these variables
-
 
 
 ### **Dependencies**
@@ -59,21 +54,17 @@ net install sumhdfe, from("`devDir'\src")
 
 
 
-<h2 id="using">Using <i>sumhdfe</i></h2>
+<h2 id="using">Usage & Features</h2>
 
 <!--- You can use `sumhdfe` in the following way: --->
 
-See the Stata help file for usage instructions.
+See the Stata help file.
 
 <h2 id="files">Files</h2>
 
 The following files are in this Github directory
 
 1) ...
-
-<h2 id="features">Features List</h2>
-
-See the Stata help file.
 
 
 <h2 id="changelog">Changelog</h2>
