@@ -19,7 +19,7 @@
 {title:Title}
 
 {p2colset 5 18 20 2}{...}
-{p2col :{cmd:sumhdfe} {hline 2}}Summary and diagnostic information for evaluating within-fixed-effect variation in regression variables. {p_end}
+{p2col :{cmd:sumhdfe} {hline 2}} Diagnostics to characterize the frequency of fixed effects and within-fixed-effect variation in linear regressions. {p_end}
 {p2colreset}{...}
 
 {marker syntax}{...}
@@ -78,7 +78,8 @@
 {cmd:sumhdfe} produces summary and diagnostic information to characterize within-fixed-effect variation in regression variables.
 See
 {browse "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777":deHaan (2021)}
-for discussion of within-FE variation and for further explanation of the following diagnostics.
+for discussion of within-fixed-effect variation and for explanation of the diagnostics produced by sumhdfe. 
+
 
 {pstd}
 {cmd:sumhdfe} can be used as a standalone package or as a postestimation command for {cmd:reghdfe}. 
@@ -202,26 +203,29 @@ This is equivalent to including an indicator/dummy variable for each category of
 {marker examples}{...}
 {title:Examples}
 
-CHANGE THIS TO WEBUSE OUR SAMPLE DATA.
+SETUP NEEDS CHANGING TO WEBUSE FROM GIT
 
 {hline}
-{pstd}Setup{p_end}
-{phang2}{cmd:sysuse auto}{p_end}
+{pstd}Setup: example firm-year panel dataset{p_end}
+{phang2}{cmd:use "/Users/edehaan/Dropbox/Work/Research/methods/6. sumhdfe/github/sumhdfe/sumhdfe_demo_data.dta", clear}{p_end}
 
 {pstd}Standalone usage{p_end}
-{phang2}{cmd:sumhdfe price weight i.foreign, absorb(turn rep78)}{p_end}
+{phang2}{cmd:sumhdfe y x1 x2, a(firm year)}{p_end}
 
-{pstd}Postestimation usage{p_end}
-{phang2}{cmd:reghdfe price weight i.foreign, absorb(turn rep78)}{p_end}
+{pstd}Postestimation usage (same results as standalone){p_end}
+{phang2}{cmd:reghdfe y x1 x2, a(firm year)}{p_end}
 {phang2}{cmd:sumhdfe}{p_end}
 
-{pstd}Postestimation usage (only some variables){p_end}
-{phang2}{cmd:reghdfe price weight i.foreign, absorb(turn rep78)}{p_end}
-{phang2}{cmd:sumhdfe price i.foreign}{p_end}
+{pstd}Keep observations with missing x2; add summary stats. (keepmissings disallowed postestimation){p_end}
+{phang2}{cmd:sumhdfe y x1 x2, a(firm year) keepmissing s(n mean p25 p50 p75 sd)}{p_end}
 
-{pstd}Postestimation usage with reghdfe,keepmata (faster){p_end}
-{phang2}{cmd:reghdfe price weight i.foreign, absorb(turn rep78) keepmata}{p_end}
-{phang2}{cmd:sumhdfe}{p_end}
+{pstd}With factor variable and conditional statement (works same for postestimation){p_end}
+{phang2}{cmd:sumhdfe y x1 i.fe3 if x2 < ., a(firm year)}{p_end}
+
+{pstd}With higher-order fixed effects (works same for postestimation){p_end}
+{phang2}{cmd:sumhdfe y x1 , a(i.year##i.fe3)}{p_end}
+
+
 
 {hline}
 
@@ -266,7 +270,7 @@ Email: {browse "tdekok@uw.edu":tdekok@uw.edu}
 {pstd}Links to online documentation & code:{p_end}
 
 {p2colset 8 10 10 2}{...}
-{p2col: -}{browse "http://example.com":Github page}: code repository, issues, etc.{p_end}
+{p2col: -}{browse "https://github.com/ed-dehaan/sumhdfe":Github page}: code repository, issues, etc.{p_end}
 {p2colreset}{...}
 
 {marker acknowledgements}{...}
@@ -278,5 +282,5 @@ Thank you in advance for bug-spotting and feature suggestions.{p_end}
 {marker references}{...}
 {title:References}
 
-{pstd}deHaan, Ed. (2021) "Using and Interpreting Fixed Effects Models." {it:Available on {browse "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777":SSRN}}
+{pstd} If you use these diagnostics, please cite: deHaan, Ed. (2021) "Using and Interpreting Fixed Effects Models." {it:Available on {browse "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777":SSRN}}
 {p_end}
