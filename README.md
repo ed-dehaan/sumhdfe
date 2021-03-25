@@ -1,12 +1,12 @@
-<h1 align="center">
-   <img src="#" alt="sumhdfe" title="sumhdfe" />
-</h1>
 <p align="center">  
  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
 <p align="left">
-  <strong>Sumhdfe</strong> is a Stata package that produces summary and diagnostic information to characterize within-fixed-effect variation in regression variables.  See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for further explanation of the sumhdfe diagnostics.
+  <strong>SUMHDFE</strong> is a Stata package that produces summary and diagnostic information to characterize the frequency of fixed effects and within-fixed-effect variation in variables in linear models.  See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for explanation of the diagnostics produced by sumhdfe. Sumhdfe complements Sergio Correia's <a href="https://github.com/sergiocorreia/reghdfe">**reghdfe**</a> Stata package for implementing high-frequency fixed effect models.
+   
+If you find these diagnostics to be useful, consider citing: deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
+   
  <br> <br>
   <span><strong>Authors:</strong> <br>
   <a href="http://scorreia.com/">Sergio Correia</a><br>
