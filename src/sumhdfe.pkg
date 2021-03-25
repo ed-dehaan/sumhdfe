@@ -1,0 +1,31 @@
+v 3
+
+d SUMHDFE: one liner here
+d
+d Authors:
+d Ed deHaan. Foster School of Business, University of Washington
+d Ties de Kok. Foster School of Business, University of Washington
+d Sergio Correia. Board of Governors of the Federal Reserve System
+d
+d DESCRIPTION HERE
+d
+d Mention online help and relevant papers here
+d
+d KW: fixed effects
+d KW: panel data
+d KW: reghdfe
+d KW: hdfe
+d KW: MWFE
+d
+d Requires: Stata version 12.1
+d
+d Required packages:
+d 	ftools
+d 	reghdfe
+d
+d Distribution-Date: 20210208
+d
+
+f sumhdfe.ado
+f sumhdfe_tabstat.ado
+f sumhdfe.sthlp
