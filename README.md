@@ -76,7 +76,9 @@ In this example, even though the R2 was quite high (0.46 excluding singleton obs
 
 5) Lastly, the `histogram(#)` option adds a histogram tabulating the frequencies of each fixed effect.
 
-![image](https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png){ width=10% }
+![image](https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png)
+<img src="https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png" width="50%">
+
 
 For additional options of the command, please consult the help file, or its [online version](http://scorreia.com/help/sumhdfe.html).
 
