@@ -25,7 +25,7 @@ For a discussion of within-FE variation, and the underlying issues that sumhdfe 
   * [License](#license)
 
 
-## Installing `sumhdfe`
+## Installing sumhdfe
 
 To install sumhdfe, you also need the latest development versions of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/):
 
@@ -70,47 +70,29 @@ For instance, you can see that there are 18 different groups of the _turn_ fixed
 
 ![image](https://user-images.githubusercontent.com/214056/112561995-bb3a8d00-8dac-11eb-9386-a8b7712ab9c6.png)
 
-4) Lastly, the fourth panel shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects.
+4) The fourth panel shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects.
 
 ![image](https://user-images.githubusercontent.com/214056/112562007-c2619b00-8dac-11eb-83a4-2e7f5726ea38.png)
 
 In this example, even though the R2 was quite high (0.46 excluding singleton observations, 0.54 including them), most of this is due to the fixed effects, which have an R2 of 0.49.
 
-5) lastly, the `histogram(#)` option adds a histogram tabulating the frequencies of each fixed effect.
+5) Lastly, the `histogram(#)` option adds a histogram tabulating the frequencies of each fixed effect.
 
 ![image](https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png)
 
+For additional options of the command, please consult the help file, or its [online version](http://scorreia.com/help/sumhdfe.html).
 
 
-http://scorreia.com/help/sumhdfe.html
+## Pending Items
+
+1. Allow for easy export of each table to csv/excel/tex
+2. Tutorial/documentation with real-world example
 
 
+## Changelog
 
-<!--- You can use `sumhdfe` in the following way: --->
+(will be added as new versions are posted)
 
-See the Stata help file.
+## Questions and bug reports
 
-
-<h2 id="pending">Pending Items</h2>
-
-1)  Summary output table to csv/excel/tex
-
-
-<h2 id="files">Files</h2>
-
-The following files are in this Github directory
-
-1) ...
-
-
-<h2 id="changelog">Changelog</h2>
-
-...
-    
-<h2 id="questions">Questions?</h2>
-
-If you have questions or experience problems please use the `issues` tab of this repository.   
-
-<h2 id="license">License</h2>  
-....
-
+If you have questions or experience problems please use the [issues](https://github.com/ed-dehaan/sumhdfe/issues) tab of this repository.
