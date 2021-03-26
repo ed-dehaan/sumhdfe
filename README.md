@@ -1,8 +1,8 @@
 # sumhdfe: summaries and diagnostics of fixed effect models
 
-Sumhdfe is a Stata package that produces summary and diagnostic information of linear fixed effect models. It characterizes the frequency of fixed effects, and the within-fixed-effect variation of the regression variables. **It is currently in beta version, so all comments and suggestions are welcome.**
+Sumhdfe is a Stata package that produces summary and diagnostic information of linear fixed effect models. It characterizes the frequency of fixed effects, how many groups (e.g., firms) have no variation within fixed effects, and the residual within-fixed-effect variation of the regression variables. **It is currently in beta version, so all comments and suggestions are welcome.**
 
-For a discussion of within-FE variation, and the underlying issues that sumhdfe addresses, see [deHaan (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777). Similarly, if you find these diagnostics to be useful, please cite:
+For a discussion of within-fixed-effect variation, and the underlying issues that sumhdfe addresses, see [deHaan (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777). Similarly, if you find these diagnostics to be useful, please cite:
 
 > deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
 
@@ -64,7 +64,7 @@ The sumhdfe results are composed of four panels:
 
 For instance, you can see that there are 18 different groups of the _turn_ fixed effect, and that four of those are singletons (appear only once).
 
-3) The third panel how often each variable is constant within a given group (such as a given year, firm, etc.). Intuitively, these observations are unlikely to contribute much information that can be used in the regression.
+3) The third panel how often each variable is constant within a given group (such as a given year, firm, etc.). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully considered.
 
 ![image](https://user-images.githubusercontent.com/214056/112561995-bb3a8d00-8dac-11eb-9386-a8b7712ab9c6.png)
 
