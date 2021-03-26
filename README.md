@@ -34,7 +34,7 @@ cap ado uninstall sumhdfe
 
 net install ftools, from("https://raw.githubusercontent.com/sergiocorreia/ftools/groupreg/src/")
 net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/reghdfe6/src/")
-net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/src/)
+net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/src/")
 ```
 
 ## Usage & Features
