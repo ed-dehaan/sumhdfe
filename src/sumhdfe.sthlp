@@ -203,11 +203,9 @@ This is equivalent to including an indicator/dummy variable for each category of
 {marker examples}{...}
 {title:Examples}
 
-SETUP NEEDS CHANGING TO WEBUSE FROM GIT
-
 {hline}
 {pstd}Setup: example firm-year panel dataset{p_end}
-{phang2}{cmd:use "/Users/edehaan/Dropbox/Work/Research/methods/6. sumhdfe/github/sumhdfe/sumhdfe_demo_data.dta", clear}{p_end}
+{phang2}{cmd:use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear}{p_end}
 
 {pstd}Standalone usage{p_end}
 {phang2}{cmd:sumhdfe y x1 x2, a(firm year)}{p_end}
