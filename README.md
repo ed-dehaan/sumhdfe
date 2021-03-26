@@ -16,13 +16,11 @@ For a discussion of within-FE variation, and the underlying issues that sumhdfe 
 
 ## Table of contents
 
-  * [Installation](#install) 
-  * [Usage & Features](#using)
-  * [Pending Items](#pending)
-  * [File List](#files)
-  * [Changelog](#changelog)
-  * [Questions?](#questions)
-  * [License](#license)
+- [Installation](#installing-sumhdfe) 
+- [Usage & Features](#usage--features)
+- [Pending Items](#pending-items)
+- [Changelog](#changelog)
+- [Questions?](#questions-and-bug-reports)
 
 
 ## Installing sumhdfe
@@ -78,7 +76,7 @@ In this example, even though the R2 was quite high (0.46 excluding singleton obs
 
 5) Lastly, the `histogram(#)` option adds a histogram tabulating the frequencies of each fixed effect.
 
-![image](https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png)
+![image](https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png){ width=10% }
 
 For additional options of the command, please consult the help file, or its [online version](http://scorreia.com/help/sumhdfe.html).
 
