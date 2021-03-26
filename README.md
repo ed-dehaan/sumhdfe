@@ -1,24 +1,22 @@
+# sumhdfe: summaries and diagnostics of fixed effect models
 
-<p align="left">
-  <strong>SUMHDFE</strong> is a Stata package that produces summary and diagnostic information to characterize the frequency of fixed effects and within-fixed-effect variation in variables in linear models.  
- 
-See <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777">deHaan (2021)</a> for discussion of within-FE variation and for explanation of the diagnostics produced by sumhdfe. Sumhdfe complements Sergio Correia's <a href="https://github.com/sergiocorreia/reghdfe"><strong>reghdfe</strong></a> Stata package for fixed effect regression models.
+Sumhdfe is a Stata package that produces summary and diagnostic information of linear fixed effect models. It characterizes the frequency of fixed effects, and the within-fixed-effect variation of the regression variables. **It is currently in beta version, so all comments and suggestions are welcome.**
 
-<br>   
-If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). <i>Using and Interpreting Fixed Effects Models</i>. Available at SSRN: https://ssrn.com/abstract=3699777.
-   
- <br> <br>
-  <span><strong>Authors:</strong> <br>
-  <a href="http://scorreia.com/">Sergio Correia</a><br>
-  <a href="https://foster.uw.edu/faculty-research/directory/ed-dehaan/">Ed deHaan</a><br>
-  <a href="http://www.TiesdeKok.com">Ties de Kok</a><br>
-  </span><br>
-  <span><strong>Help file: </strong><a href="#">link</a></span>
-</p>
+For a discussion of within-FE variation, and the underlying issues that sumhdfe addresses, see [deHaan (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777). Similarly, if you find these diagnostics to be useful, please cite:
+
+> deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
+
+
+## Authors
+
+- [Sergio Correia](http://scorreia.com/)
+- [Ed deHaan](https://foster.uw.edu/faculty-research/directory/ed-dehaan/)
+- [Ties de Kok](http://www.TiesdeKok.com)
+
 
 ## Table of contents
 
-  * [Install Sumhdfe](#install) 
+  * [Installation](#install) 
   * [Usage & Features](#using)
   * [Pending Items](#pending)
   * [File List](#files)
@@ -29,33 +27,64 @@ If you find these diagnostics to be useful, please cite: deHaan, Ed. (2021). <i>
 
 ## Installing `sumhdfe`
 
+To install sumhdfe, you also need the latest development versions of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/):
+
 ```stata
-* Define development directory
-local devDir "E:\Dropbox\Work\Programming\active\sumhdfe"
-
-* Install ftools from dev branch
 cap ado uninstall ftools
-net install ftools, from("https://raw.githubusercontent.com/sergiocorreia/ftools/groupreg/src/")
-
-* Install reghdfe from dev branch
 cap ado uninstall reghdfe
-net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/reghdfe6/src/")
-
 cap ado uninstall sumhdfe
-net install sumhdfe, from("`devDir'\src")
+
+net install ftools, from("https://raw.githubusercontent.com/sergiocorreia/ftools/groupreg/src/")
+net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/reghdfe6/src/")
+net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/src/)
 ```
 
+## Usage & Features
+
+### Example usage
+
+The following runs reghdfe, and then sumhdfe as a postestimation command:
+
+```stata
+reghdfe price length, a(turn trunk)
+sumhdfe
+```
+
+The reghdfe results are as usual:
+
+![image](https://user-images.githubusercontent.com/214056/112561613-f5eff580-8dab-11eb-9a87-7776d795af78.png)
+
+The sumhdfe results are composed of four panels:
+
+1) The first panel shows summary statistics (similar to `estat summarize`) which can be customized:
+
+![image](https://user-images.githubusercontent.com/214056/112561652-02744e00-8dac-11eb-891e-271c4c57b240.png)
+
+2) The second panel shows summary statistics of the _fixed effects_ themselves:
+
+![image](https://user-images.githubusercontent.com/214056/112561764-39e2fa80-8dac-11eb-9e70-98a5f0c9f04d.png)
+
+For instance, you can see that there are 18 different groups of the _turn_ fixed effect, and that four of those are singletons (appear only once).
+
+3) The third panel how often each variable is constant within a given group (such as a given year, firm, etc.). Intuitively, these observations are unlikely to contribute much information that can be used in the regression.
+
+![image](https://user-images.githubusercontent.com/214056/112561995-bb3a8d00-8dac-11eb-9386-a8b7712ab9c6.png)
+
+4) Lastly, the fourth panel shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects.
+
+![image](https://user-images.githubusercontent.com/214056/112562007-c2619b00-8dac-11eb-83a4-2e7f5726ea38.png)
+
+In this example, even though the R2 was quite high (0.46 excluding singleton observations, 0.54 including them), most of this is due to the fixed effects, which have an R2 of 0.49.
+
+5) lastly, the `histogram(#)` option adds a histogram tabulating the frequencies of each fixed effect.
+
+![image](https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png)
 
 
-### **Dependencies**
 
-- [`ftools`](http://scorreia.com/software/ftools/)
-- [`reghdfe`](http://scorreia.com/software/reghdfe/)
+http://scorreia.com/help/sumhdfe.html
 
 
-
-
-<h2 id="using">Usage & Features</h2>
 
 <!--- You can use `sumhdfe` in the following way: --->
 
