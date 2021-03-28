@@ -52,14 +52,14 @@ sumhdfe
 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
-reghdfe y x1 x2  , a(year firm) 
+reghdfe y x1 x2  , a(firm year) 
 sumhdfe
 ```
 
 Or, sumhdfe standalone produces the same results, but without the regression:
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
-sumhdfe y x1 x2  , a(year firm) 
+sumhdfe y x1 x2  , a(firm year) 
 ```
 
 
@@ -84,8 +84,6 @@ The sumhdfe results are composed of four panels:
 <img src="https://user-images.githubusercontent.com/74987960/112763985-91a38080-8fbb-11eb-8ac5-d05e2f578ca9.png" width="750">
 
 
-![image](https://user-images.githubusercontent.com/214056/112561764-39e2fa80-8dac-11eb-9e70-98a5f0c9f04d.png)
-
 For instance, you can see that there are 18 different groups of the _turn_ fixed effect, and that four of those are singletons (appear only once).
 
 3) The third panel how often each variable is constant within a given group (such as a given year, firm, etc.). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully considered.
@@ -93,14 +91,10 @@ For instance, you can see that there are 18 different groups of the _turn_ fixed
 <img src="https://user-images.githubusercontent.com/74987960/112763999-9bc57f00-8fbb-11eb-8297-20275a901aab.png" width="750">
 
 
-![image](https://user-images.githubusercontent.com/214056/112561995-bb3a8d00-8dac-11eb-9386-a8b7712ab9c6.png)
-
 4) The fourth panel shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects.
 
 <img src="https://user-images.githubusercontent.com/74987960/112764014-a718aa80-8fbb-11eb-8651-e85693d423e0.png" width="750">
 
-
-![image](https://user-images.githubusercontent.com/214056/112562007-c2619b00-8dac-11eb-83a4-2e7f5726ea38.png)
 
 In this example, even though the R2 was quite high (0.46 excluding singleton observations, 0.54 including them), most of this is due to the fixed effects, which have an R2 of 0.49.
 
