@@ -41,6 +41,8 @@ net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/m
 
 ### Example usage
 
+See the Stata help file for other examples. 
+
 The following runs reghdfe, and then sumhdfe as a postestimation command:
 
 ```stata
@@ -68,15 +70,19 @@ The reghdfe results are as usual:
 <img src="https://user-images.githubusercontent.com/74987960/112763530-a8e16e80-8fb9-11eb-89a3-7c0afcd0bc70.png" width="750">
 
 
-![image](https://user-images.githubusercontent.com/214056/112561613-f5eff580-8dab-11eb-9a87-7776d795af78.png)
-
 The sumhdfe results are composed of four panels:
 
 1) The first panel shows summary statistics (similar to `estat summarize`) which can be customized:
 
+<img src="https://user-images.githubusercontent.com/74987960/112763970-80f30a80-8fbb-11eb-91c7-67072f0f7da5.png" width="750">
+
+
 ![image](https://user-images.githubusercontent.com/214056/112561652-02744e00-8dac-11eb-891e-271c4c57b240.png)
 
 2) The second panel shows summary statistics of the _fixed effects_ themselves:
+
+<img src="https://user-images.githubusercontent.com/74987960/112763985-91a38080-8fbb-11eb-8ac5-d05e2f578ca9.png" width="750">
+
 
 ![image](https://user-images.githubusercontent.com/214056/112561764-39e2fa80-8dac-11eb-9e70-98a5f0c9f04d.png)
 
@@ -84,9 +90,15 @@ For instance, you can see that there are 18 different groups of the _turn_ fixed
 
 3) The third panel how often each variable is constant within a given group (such as a given year, firm, etc.). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully considered.
 
+<img src="https://user-images.githubusercontent.com/74987960/112763999-9bc57f00-8fbb-11eb-8297-20275a901aab.png" width="750">
+
+
 ![image](https://user-images.githubusercontent.com/214056/112561995-bb3a8d00-8dac-11eb-9386-a8b7712ab9c6.png)
 
 4) The fourth panel shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects.
+
+<img src="https://user-images.githubusercontent.com/74987960/112764014-a718aa80-8fbb-11eb-8651-e85693d423e0.png" width="750">
+
 
 ![image](https://user-images.githubusercontent.com/214056/112562007-c2619b00-8dac-11eb-83a4-2e7f5726ea38.png)
 
