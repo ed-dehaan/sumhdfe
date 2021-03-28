@@ -64,31 +64,33 @@ The reghdfe results are as usual:
 
 The sumhdfe results are composed of four panels:
 
-1) The first panel shows summary statistics (similar to `estat summarize`) which can be customized:
+1) Panel A shows summary statistics for the sample used in reghdfe, and can be customized similar to `estat summarize`. N does not exclude singletons so differs from the reghdfe output above:
 
 <img src="https://user-images.githubusercontent.com/74987960/112763970-80f30a80-8fbb-11eb-91c7-67072f0f7da5.png" width="750">
 
 
-![image](https://user-images.githubusercontent.com/214056/112561652-02744e00-8dac-11eb-891e-271c4c57b240.png)
-
-2) The second panel shows summary statistics of the _fixed effects_ themselves:
+2) Panel B shows summary statistics for the _fixed effects_ themselves. 
 
 <img src="https://user-images.githubusercontent.com/74987960/112763985-91a38080-8fbb-11eb-8ac5-d05e2f578ca9.png" width="750">
 
+In this example, there are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. There are 39 unique years within the _year_ fixed effects, 8 of which are singletons. Iteratively dropping singletons eliminates additional 2 observations, for a total of 38 singletons eliminated from the reghdfe output.
 
-For instance, you can see that there are 18 different groups of the _turn_ fixed effect, and that four of those are singletons (appear only once).
-
-3) The third panel how often each variable is constant within a given group (such as a given year, firm, etc.). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully considered.
+3) Panel C quantifies often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully considered.
 
 <img src="https://user-images.githubusercontent.com/74987960/112763999-9bc57f00-8fbb-11eb-8297-20275a901aab.png" width="750">
 
+This example shows that variable x1 has (623-38=) 585 observations excluding singletons. Within the non-singleton data, 58 firms have no variation in x1; i.e., each firm has the same x1 in all years. Those 58 firms relate to 217 observations. X1 is constant within 4 years, relating to 28 observations.
 
-4) The fourth panel shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects.
+4) Panel D shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared:
 
 <img src="https://user-images.githubusercontent.com/74987960/112764014-a718aa80-8fbb-11eb-8651-e85693d423e0.png" width="750">
 
+The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is just 22.7. Thus, the within-fixed effect variation of x1 is roughly 28% of the pooled sample. 
 
-In this example, even though the R2 was quite high (0.46 excluding singleton observations, 0.54 including them), most of this is due to the fixed effects, which have an R2 of 0.49.
+In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1.
+
+
+
 
 5) The `histogram(#)` option tabulates the frequencies of observations within a fixed effect grouping. For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, which in this case if firm:
 
@@ -102,6 +104,15 @@ For additional examples and additional options, see the stata help file with `he
 
 1. Allow for easy export of each table to csv/excel/tex
 2. Tutorial/documentation with real-world example
+3. Add an option to visually compare the pooled- and within-fixed-effect variation in a variable. In the meantime, it can be manually done as follows:
+
+```stata
+use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
+qui: reghdfe y x1 x2, a(firm year)
+qui: reghdfe x1 if e(sample), a(firm year) resid
+twoway (histogram x1, fcolor(green%75) lcolor(none)) (histogram _reghdfe_resid, fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
+```
+
 
 
 ## Changelog
