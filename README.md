@@ -54,6 +54,15 @@ reghdfe y x1 x2  , a(year firm)
 sumhdfe
 ```
 
+Or, sumhdfe standalone produces the same results (without the regression results):
+```stata
+use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
+sumhdfe y x1 x2  , a(year firm) 
+```
+
+
+
+
 The reghdfe results are as usual:
 
 ![image](https://user-images.githubusercontent.com/214056/112561613-f5eff580-8dab-11eb-9a87-7776d795af78.png)
