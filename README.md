@@ -98,12 +98,12 @@ For instance, you can see that there are 18 different groups of the _turn_ fixed
 
 In this example, even though the R2 was quite high (0.46 excluding singleton observations, 0.54 including them), most of this is due to the fixed effects, which have an R2 of 0.49.
 
-5) Lastly, the `histogram(#)` option adds a histogram tabulating the frequencies of each fixed effect.
+5) The `histogram(#)` option tabulates the frequencies of observations within fixed effect group. For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect group within `a`, which in this case if firm:
 
-<img src="https://user-images.githubusercontent.com/214056/112562221-3439e480-8dad-11eb-83fa-5a43f25bfe0a.png" width="50%">
+<img src="https://user-images.githubusercontent.com/74987960/112764325-d2e86000-8fbc-11eb-8108-6056e00656b5.png" width="250">
 
 
-For additional options of the command, please consult the help file, or its [online version](http://scorreia.com/help/sumhdfe.html).
+For additional examples and additional options of the command, please consult the help file, or its [online version](http://scorreia.com/help/sumhdfe.html).
 
 
 ## Pending Items
