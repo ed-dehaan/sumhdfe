@@ -64,7 +64,7 @@ The reghdfe results are as usual:
 
 The sumhdfe results are composed of four panels:
 
-1) Panel A shows summary statistics for the sample used in reghdfe, and can be customized similar to `estat summarize`. N does not exclude singletons so differs from the reghdfe output above:
+1) Panel A shows summary statistics for the sample used in reghdfe, and can be customized similar to `estat summarize`. N includes singletons so differs from the reghdfe output above:
 
 <img src="https://user-images.githubusercontent.com/74987960/112763970-80f30a80-8fbb-11eb-91c7-67072f0f7da5.png" width="750">
 
@@ -75,7 +75,7 @@ The sumhdfe results are composed of four panels:
 
 In this example, there are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. There are 39 unique years within the _year_ fixed effects, 8 of which are singletons. Iteratively dropping singletons eliminates additional 2 observations, for a total of 38 singletons eliminated from the reghdfe output.
 
-3) Panel C quantifies often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully considered.
+3) Panel C quantifies how often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully evaluated.
 
 <img src="https://user-images.githubusercontent.com/74987960/112763999-9bc57f00-8fbb-11eb-8297-20275a901aab.png" width="750">
 
@@ -87,7 +87,7 @@ This example shows that variable x1 has (623-38=) 585 observations excluding sin
 
 The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is just 22.7. Thus, the within-fixed effect variation of x1 is roughly 28% of the pooled sample. 
 
-In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1.
+In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1. R-squared are relative to the sample including singletons.
 
 
 
@@ -110,7 +110,8 @@ For additional examples and additional options, see the stata help file with `he
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 qui: reghdfe y x1 x2, a(firm year)
 qui: reghdfe x1 if e(sample), a(firm year) resid
-twoway (histogram x1, fcolor(green%75) lcolor(none)) (histogram _reghdfe_resid, fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
+twoway (histogram x1, fcolor(green%75) lcolor(none)) (histogram _reghdfe_resid, ///
+fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
 ```
 
 
