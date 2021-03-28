@@ -113,6 +113,7 @@ qui: reghdfe x1 if e(sample), a(firm year) resid
 twoway (histogram x1, fcolor(green%75) lcolor(none)) (histogram _reghdfe_resid, ///
 fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
 ```
+<img src="https://user-images.githubusercontent.com/74987960/112765144-ae8e8280-8fc0-11eb-8723-8ce0758515e8.png" width="500">
 
 
 
