@@ -65,6 +65,8 @@ sumhdfe y x1 x2  , a(year firm)
 
 The reghdfe results are as usual:
 
+![image](https://user-images.githubusercontent.com/74987960/112763483-78013980-8fb9-11eb-8b88-1926632d3ab6.png)
+
 ![image](https://user-images.githubusercontent.com/214056/112561613-f5eff580-8dab-11eb-9a87-7776d795af78.png)
 
 The sumhdfe results are composed of four panels:
