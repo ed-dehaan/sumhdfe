@@ -85,7 +85,7 @@ This example shows that variable x1 has (623-38=) 585 observations excluding sin
 
 <img src="https://user-images.githubusercontent.com/74987960/112764014-a718aa80-8fbb-11eb-8651-e85693d423e0.png" width="750">
 
-The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is just 22.7. Thus, the within-fixed effect variation of x1 is roughly 28% of the pooled sample. 
+The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is 22.7. Thus, the within-fixed effect variation of x1 is roughly 28.4% of the pooled sample. 
 
 In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1. [Technical note: r-squared are relative to the sample including singletons, for which r-squared is mechanically equal to 100%.]
 
