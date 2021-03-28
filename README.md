@@ -54,7 +54,7 @@ reghdfe y x1 x2  , a(year firm)
 sumhdfe
 ```
 
-Or, sumhdfe standalone produces the same results (without the regression results):
+Or, sumhdfe standalone produces the same results, but without the regression:
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 sumhdfe y x1 x2  , a(year firm) 
