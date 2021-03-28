@@ -224,7 +224,6 @@ This is equivalent to including an indicator/dummy variable for each category of
 {phang2}{cmd:sumhdfe y x1 , a(i.year##i.fe3)}{p_end}
 
 
-
 {hline}
 
 {marker results}{...}
