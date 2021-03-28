@@ -65,7 +65,7 @@ sumhdfe y x1 x2  , a(year firm)
 
 The reghdfe results are as usual:
 
-![image](https://user-images.githubusercontent.com/74987960/112763530-a8e16e80-8fb9-11eb-89a3-7c0afcd0bc70.png)
+![image](https://user-images.githubusercontent.com/74987960/112763530-a8e16e80-8fb9-11eb-89a3-7c0afcd0bc70.png =200)
 
 
 ![image](https://user-images.githubusercontent.com/214056/112561613-f5eff580-8dab-11eb-9a87-7776d795af78.png)
