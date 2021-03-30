@@ -93,14 +93,14 @@ Panel B provides summary statistics for the *fixed effects* themselves.
 
 **Example:**
 
-<img src="https://user-images.githubusercontent.com/74987960/112763985-91a38080-8fbb-11eb-8ac5-d05e2f578ca9.png" width="750">
+<img src="https://user-images.githubusercontent.com/74987960/112998721-2a084500-9123-11eb-8791-8c1a85d086c1.png" width="750">
 
 **Notes:**
 
 - Interpretation of the above example:
 	 - There are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. 
 	 - There are 39 unique years within the _year_ fixed effects, 8 of which are singletons.
-	 - Iteratively dropping singletons eliminates 2 additional observations, for a total of 38 singletons eliminated from the `reghdfe` output.
+	 - Iterating across both _firm_ and _year_ eliminates 2 more "joint singletons," for a total of 38 singletons eliminated from the `reghdfe` output.
 
 ### Panel C - Fixed effect within group variation 
 
