@@ -1,4 +1,4 @@
-*! version 0.9.0 11mar2021
+*! version 0.9.1 30mar2021
 
 program define sumhdfe
 	* version 14 // set minimum version
@@ -332,7 +332,7 @@ program Replay
 		matlist r(fes), border(top bottom) rowtitle(Fixed Effect) noblank nohalf ///
 			cspec(& %`varwidth's | %12.0fc & %12.0fc & %12.0fc | %8.0fc & %10.2fc & %8.0fc &) rspec(||`spaces'|&|) ///
 			showcoleq(combined) aligncolnames(center)
-		mata: printf("{txt}There are %g singletons (%3.1f%s of all observations)\n", HDFE_Compact.num_singletons, 100*HDFE_Compact.num_singletons/(HDFE_Compact.N+HDFE_Compact.num_singletons), "%")
+		mata: printf("{txt}Note: there are %g singletons (%3.1f%s of all observations)\n", HDFE_Compact.num_singletons, 100*HDFE_Compact.num_singletons/(HDFE_Compact.N+HDFE_Compact.num_singletons), "%")
 	}
 
 
@@ -496,7 +496,7 @@ void summarize_fes(class FixedEffects scalar HDFE, class FixedEffects scalar HDF
 		output[g, 5] = mean(HDFE_Singletons.factors[g].counts)
 		output[g, 6] = min_max[2]
 	}
-	rowstripe[G+1, 2] = "Additional"
+	rowstripe[G+1, 2] = "Joint singletons"
 	rowstripe[G+2, 2] = "Total singletons"
 	output[G+1, 3] = HDFE.num_singletons - sum_singletons
 	output[G+2, 3] = HDFE.num_singletons

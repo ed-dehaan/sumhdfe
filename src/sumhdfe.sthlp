@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.9.0 02Mar2021}{...}
+{* *! version 0.9.1 30mar2021}{...}
 {vieweralsosee "reghdfe" "help reghdfe"}{...}
 {vieweralsosee "" "--"}{...}
 {vieweralsosee "ivreghdfe" "help ivreghdfe"}{...}
