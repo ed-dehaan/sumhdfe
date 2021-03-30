@@ -109,8 +109,8 @@ The default {cmd:sumhdfe} output includes four Panels:
 {phang2}  2. Number of singletons{p_end}
 {phang2}  3. Min/Avg/Max observations per FE group{p_end}
 
-{tab} "Joint" singletons are identified through iterative elimination of singletons across multiple FE. The number can be negative if an observation is a singleton within both FE groupings.
-{tab} "Total" singletons is the total individual plus joint singletons.
+{phang2}"Joint" singletons are identified through iterative elimination across multiple FE. Can be negative if an observation is a singleton within both FE.{p_end}
+{phang2}"Total" singletons is the total individual plus joint singletons.{p_end}
 
 
 {dlgtab 8 16:Panel C: Fixed effect groups with no within-group variation}
