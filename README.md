@@ -60,7 +60,7 @@ First run `reghdfe` and then run `sumhdfe`. A simple example is show below, see 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 reghdfe y x1 x2  , a(firm year) 
-sumhdfe
+sumhdfe, h(1)
 ```
 **Standalone version**
 
@@ -68,7 +68,7 @@ Run `sumhdfe` directly.
 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
-sumhdfe y x1 x2  , a(firm year) 
+sumhdfe y x1 x2  , a(firm year) h(1)
 ```
 
 ## Default output
@@ -173,3 +173,7 @@ fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
 ## Questions and bug reports
 
 If you have questions or experience problems please use the [issues](https://github.com/ed-dehaan/sumhdfe/issues) tab of this repository.
+
+Known bugs:
+1. `histogram` option is unintentionally required
+
