@@ -1,11 +1,18 @@
-# sumhdfe: summaries and diagnostics of fixed effect models
+<h1 align="left">
+   <img src="https://i.imgur.com/krmdzHa.png" alt="sumhdfe" title="sumhdfe" />
+</h1>
 
-Sumhdfe is a Stata package that produces summary and diagnostic information of linear fixed effect models. It characterizes the frequency of fixed effects, how many groups (e.g., firms) have no variation within fixed effects, and the residual within-fixed-effect variation of the regression variables. **It is currently in beta version, so all comments and suggestions are welcome.**
+**Sumhdfe** is a Stata package that produces summary and diagnostic information of linear fixed effect models. It shows:
+- The frequency of fixed effects
+- How many groups (e.g., firms) have no variation within fixed effects  
+- The residual within-fixed-effect variation of the regression variables
+
+**It is currently in beta version, so all comments and suggestions are welcome.**
 
 For a discussion of within-fixed-effect variation, and the underlying issues that sumhdfe addresses, see [deHaan (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777). Similarly, if you find these diagnostics to be useful, please cite:
 
-> deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. Available at SSRN: https://ssrn.com/abstract=3699777.
-
+> **deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. ** 
+> Available at SSRN: https://ssrn.com/abstract=3699777.
 
 ## Authors
 
@@ -25,7 +32,9 @@ For a discussion of within-fixed-effect variation, and the underlying issues tha
 
 ## Installing sumhdfe
 
-To install sumhdfe, you also need the latest development versions of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/):
+Sumhdfe requires the latest development versions of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/) to be installed prior to installation. 
+
+To install these packages and `sumhdfe`, follow the steps below:
 
 ```stata
 cap ado uninstall ftools
@@ -41,64 +50,104 @@ net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/m
 
 ### Example usage
 
-The following runs reghdfe, and then sumhdfe as a postestimation command. See the Stata help file for additional examples:
+`Sumhdfe` can be used in one of two ways:
+1. As a postestimation command following `reghdfe`
+2. As a standalone command 
+
+**Post-estimation version**
+
+First run `reghdfe` and then run `sumhdfe`. A simple example is show below, see the Stata help file for additional examples. 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 reghdfe y x1 x2  , a(firm year) 
 sumhdfe
 ```
+**Standalone version**
 
-Or, sumhdfe standalone produces the same results, but without the regression:
+Run `sumhdfe` directly. 
+
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 sumhdfe y x1 x2  , a(firm year) 
 ```
 
+## Default output
 
+The `sumhdfe` command will provide four panels by default. 
 
+### Panel A - summary statistics - reghdfe
 
-The reghdfe results are as usual:
+Panel A provides summary statistics for the sample used in `reghdfe`.
 
-<img src="https://user-images.githubusercontent.com/74987960/112763530-a8e16e80-8fb9-11eb-89a3-7c0afcd0bc70.png" width="750">
-
-
-The sumhdfe results are composed of four panels:
-
-1) Panel A shows summary statistics for the sample used in reghdfe, and can be customized similar to `estat summarize`. N includes singletons so differs from the reghdfe output above:
+**Example:**
 
 <img src="https://user-images.githubusercontent.com/74987960/112763970-80f30a80-8fbb-11eb-91c7-67072f0f7da5.png" width="750">
 
+**Notes:**
+-  It can be customized similar to `estat summarize`
+- N includes singletons, so it differs from N shown in the `reghdfe` output
 
-2) Panel B shows summary statistics for the _fixed effects_ themselves. 
+### Panel B - summary statistics - fixed effects 
+
+Panel B provides summary statistics for the *fixed effects* themselves.  
+
+**Example:**
 
 <img src="https://user-images.githubusercontent.com/74987960/112763985-91a38080-8fbb-11eb-8ac5-d05e2f578ca9.png" width="750">
 
-In this example, there are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. There are 39 unique years within the _year_ fixed effects, 8 of which are singletons. Iteratively dropping singletons eliminates additional 2 observations, for a total of 38 singletons eliminated from the reghdfe output.
+**Notes:**
 
-3) Panel C quantifies how often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully evaluated.
+- Interpretation of the above example:
+	 - There are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. 
+	 - There are 39 unique years within the _year_ fixed effects, 8 of which are singletons.
+	 - Iteratively dropping singletons eliminates 2 additional observations, for a total of 38 singletons eliminated from the `reghdfe` output.
+
+### Panel C - Fixed effect within group variation 
+
+Panel C quantifies how often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully evaluated.
+
+**Example:**
 
 <img src="https://user-images.githubusercontent.com/74987960/112763999-9bc57f00-8fbb-11eb-8297-20275a901aab.png" width="750">
 
-This example shows that variable x1 has (623-38=) 585 observations excluding singletons. Within the non-singleton data, 58 firms have no variation in x1; i.e., each firm has the same x1 in all years. Those 58 firms relate to 217 observations. X1 is constant within 4 years, relating to 28 observations.
+**Notes:**
 
-4) Panel D shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared:
+- Interpretation of the above example:
+	- Variable x1 has (623-38=) 585 observations excluding singletons. 
+	- Within the non-singleton data, 58 firms have no variation in x1; i.e., each firm has the same x1 in all years. Those 58 firms relate to 217 observations. 
+	- X1 is constant within 4 years, relating to 28 observations.
+
+### Panel D - Variation lost (absorbed) due to fixed effects
+
+Panel D shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
+
+**Example:**
 
 <img src="https://user-images.githubusercontent.com/74987960/112764014-a718aa80-8fbb-11eb-8651-e85693d423e0.png" width="750">
 
-The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is 22.7. Thus, the within-fixed effect variation of x1 is roughly 28.4% of the pooled sample. 
+**Notes:**
 
-In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1. [Technical note: r-squared are relative to the sample including singletons, for which r-squared is mechanically equal to 100%.]
+- Interpretation of the above example:
+	- The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is 22.7. Thus, the within-fixed effect variation of x1 is roughly 28.4% of the pooled sample. 
+	- In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. 
+	- Combined, the fixed effects explain 92.4% of the variation in x1. 
+		- *Technical note:  the r-squared is relative to the sample including singletons, for which the r-squared is mechanically equal to 100%.*
 
+## Optional outputs
 
+### Histogram
 
+The `histogram(#)` option tabulates the frequencies of observations within a fixed effect grouping.
 
-5) The `histogram(#)` option tabulates the frequencies of observations within a fixed effect grouping. For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, which in this case if firm:
+**Example:**
+
+For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, which in this case if firm. 
 
 <img src="https://user-images.githubusercontent.com/74987960/112764325-d2e86000-8fbc-11eb-8108-6056e00656b5.png" width="500">
 
+### Additional options
 
 For additional examples and additional options, see the stata help file with `help sumhdfe`, or its [online version](http://scorreia.com/help/sumhdfe.html).
-
 
 ## Pending Items
 
