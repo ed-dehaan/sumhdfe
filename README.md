@@ -140,7 +140,7 @@ The `histogram(#)` option tabulates the frequencies of observations within a fix
 
 **Example:**
 
-For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, which in this case if firm. 
+For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, which in this case if firm. You can also specify the fixed effect name; for example `sumhdfe, histogram(year)`.
 
 <img src="https://user-images.githubusercontent.com/74987960/112764325-d2e86000-8fbc-11eb-8108-6056e00656b5.png" width="500">
 
