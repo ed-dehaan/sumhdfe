@@ -60,7 +60,7 @@ First run `reghdfe` and then run `sumhdfe`. A simple example is show below, see 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 reghdfe y x1 x2  , a(firm year) 
-sumhdfe
+sumhdfe, h(1)
 ```
 **Standalone version**
 
@@ -68,7 +68,7 @@ Run `sumhdfe` directly.
 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
-sumhdfe y x1 x2  , a(firm year) 
+sumhdfe y x1 x2  , a(firm year) h(1)
 ```
 
 ## Default output
@@ -93,14 +93,14 @@ Panel B provides summary statistics for the *fixed effects* themselves.
 
 **Example:**
 
-<img src="https://user-images.githubusercontent.com/74987960/112763985-91a38080-8fbb-11eb-8ac5-d05e2f578ca9.png" width="750">
+<img src="https://user-images.githubusercontent.com/74987960/112998721-2a084500-9123-11eb-8791-8c1a85d086c1.png" width="750">
 
 **Notes:**
 
 - Interpretation of the above example:
 	 - There are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. 
 	 - There are 39 unique years within the _year_ fixed effects, 8 of which are singletons.
-	 - Iteratively dropping singletons eliminates 2 additional observations, for a total of 38 singletons eliminated from the `reghdfe` output.
+	 - Iterating across both _firm_ and _year_ eliminates 2 more "joint singletons," for a total of 38 singletons eliminated from the `reghdfe` output.
 
 ### Panel C - Fixed effect within group variation 
 
@@ -119,7 +119,7 @@ Panel C quantifies how often each variable is constant within a given fixed effe
 
 ### Panel D - Variation lost (absorbed) due to fixed effects
 
-Panel D shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
+Panel D shows how much variation in each variable is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
 
 **Example:**
 
@@ -129,8 +129,7 @@ Panel D shows how much variation of the dependent variable and the regressors is
 
 - Interpretation of the above example:
 	- The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is 22.7. Thus, the within-fixed effect variation of x1 is roughly 28.4% of the pooled sample. 
-	- In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. 
-	- Combined, the fixed effects explain 92.4% of the variation in x1. 
+	- In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1. 
 		- *Technical note:  the r-squared is relative to the sample including singletons, for which the r-squared is mechanically equal to 100%.*
 
 ## Optional outputs
@@ -173,3 +172,7 @@ fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
 ## Questions and bug reports
 
 If you have questions or experience problems please use the [issues](https://github.com/ed-dehaan/sumhdfe/issues) tab of this repository.
+
+Known bugs:
+1. `histogram` option is unintentionally required
+
