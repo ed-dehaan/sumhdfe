@@ -119,7 +119,7 @@ Panel C quantifies how often each variable is constant within a given fixed effe
 
 ### Panel D - Variation lost (absorbed) due to fixed effects
 
-Panel D shows how much variation of the dependent variable and the regressors is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
+Panel D shows how much variation in each variable is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
 
 **Example:**
 
