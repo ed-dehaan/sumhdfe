@@ -60,7 +60,7 @@
 {syntab:Main}
 {synopt: {opth a:bsorb(reghdfe##absorb:absvars)}}categorical variables representing the fixed effects to be absorbed{p_end}
 {synopt :{opt keepm:issings}}include observations with some missing variables. Standalone usage only. {p_end}
-{synopt: {opt h:istogram(#)}}plot histogram of group size frequencies, for the #th fixed effect{p_end}
+{synopt: {opt h:istogram(#, ...)}}plot histogram of group size frequencies, for the #th fixed effect{p_end}
 {synopt:{cmdab:s:tatistics:(}{it:{help tabstat##statname:str}} [{it:...}]{cmd:)}}report specified summary statistics (default is {it: n mean min max}){p_end}
 {synopt:{opt var:width(#)}}variable width; default is {cmd:varwidth(16)}{p_end}
 {synopt:{opt f:ormat}{cmd:(%}{it:{help format:fmt}}{cmd:)}}display format for statistics; default format is {cmd:%9.0g}{p_end}
@@ -158,6 +158,16 @@ This is equivalent to including an indicator/dummy variable for each category of
 {phang}
 {opt basev:ars} report statistics only for base variables instead of factor, lagged, or delta variables; i.e., ignore i., l., and d.  Currently incompatible with {opt keepm:issings}).
 
+{phang}
+{opt h:istogram(#, ...)} plots a histogram of the group count frequencies of the #th fixed effect.
+For instance, {cmd: sumhdfe ... , a(year firm) hist(1)} will draw a histogram with the counts of each year in the sample.
+
+{pmore}
+You can also directly input the name of the fixed effect instead of its position, as in {cmd: sumhdfe ... , a(year firm) hist(year)}.
+
+{pmore}
+Further, you can also pass additional options to control details of the graph.
+For instance, {cmd: sumhdfe ... , a(year firm) hist(year, title("My title") lcolor(red))}.
 
 {phang}
 {cmd:statistics(}{it:statname} [{it:...}]{cmd:)}

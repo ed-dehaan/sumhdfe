@@ -77,7 +77,7 @@ program define Main
 		* Parse sumhdfe+reghdfe (combined)
 		syntax varlist(fv ts numeric default=none) [if] [in] [fw aw pw], [*] /// passthrough to reghdfe
 			[KEEPSINgletons] /// discarded
-			[Histogram(integer 0) TABles(string) Statistics(string) VARwidth(integer 16) format(string)] /// sumhdfe options (note that -basevars- is incompatible with -keepmissings-)
+			[Histogram(string) TABles(string) Statistics(string) VARwidth(integer 16) format(string)] /// sumhdfe options (note that -basevars- is incompatible with -keepmissings-)
 			KEEPMissings // keepmissings option
 		
 		if ("`tables'" == "") loc tables "fe sum zero rss"
@@ -98,7 +98,7 @@ program define Main
 			mata: mata rename HDFE HDFE_Compact
 			reghdfe `var' `if' `in' [`weight'`exp'], `options' nowarn verbose(-1) nopartialout keepsingletons
 			mata: mata rename HDFE HDFE_Singletons
-			qui Inner, histogram(0) tables(`loop_tables') statistics(`statistics')
+			qui Inner, tables(`loop_tables') statistics(`statistics')
 			
 			if (`is_first') {
 				matrix rename r(stats) `M_stats'
@@ -137,7 +137,7 @@ program define Main
 		* Parse sumhdfe+reghdfe (combined)
 		syntax varlist(fv ts numeric default=none) [if] [in] [fw aw pw], [*] /// passthrough to reghdfe
 			[KEEPSINgletons] /// discarded
-			[Histogram(integer 0) TABles(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)] // sumhdfe options
+			[Histogram(string) TABles(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)] // sumhdfe options
 		
 		* Create HDFE object that excludes singletons
 		reghdfe `varlist' `if' `in' [`weight'`exp'], `options' nowarn verbose(-1) noregress
@@ -152,7 +152,7 @@ program define Main
 	}
 	else if inlist("`mode'", "postestimation", "keepmata") {
 		* Parse sumhdfe
-		syntax [varlist(fv ts numeric default=none)], [Histogram(integer 0) TABles(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)]
+		syntax [varlist(fv ts numeric default=none)], [Histogram(string) TABles(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)]
 		loc sumhdfe_fullvarlist `varlist'
 		loc sumhdfe_options "histogram(`histogram') tables(`tables') statistics(`statistics') `basevars' varwidth(`varwidth') format(`format')"
 		loc cmdline `"`e(cmdline)'"'
@@ -202,7 +202,7 @@ program define Inner
 	* -syntax- CANNOT have varlist
 	* otherwise, it will convert "1b.race .race" into "i(1 2)b1.race" which messes up all further code
 	syntax [anything], ///
-		histogram(integer) ///
+		histogram(string) ///
 		[Statistics(string) BASEVars KEEPMissings] ///
 		[tables(string)] ///
 		[VARwidth(integer 16) format(string)] ///
@@ -244,7 +244,7 @@ program define Inner
 	if (`show_table_fe') SummarizeFEs
 	if (`show_table_zero') SummarizeZeroVariation
 	if (`show_table_rss') SummarizeVariation
-	if (`histogram') Histogram, fe(`histogram')
+	if (`"`histogram'"' != "") Histogram `histogram'
 
 	* Post tables
 	Post
@@ -295,13 +295,26 @@ end
 
 
 program Histogram
-	syntax, FE(integer)
-	* This is just a prototype, we need to think about a few issues:
-	* 1) It's hard to plot multiple FEs because they override each other
-	* 2) So maybe we want to save them?
-	* 3) We also want to be able to pass other options to the plot
+	syntax anything(name=fe), [start(integer 0) width(integer 1) DENsity FRACtion FREQuency percent xtitle(string) *]
+
+	* Select if we want fraction, frequency, etc (freq by default)
+	opts_exclusive "`density' `fraction' `frequency' `percent'" histogram
+	loc draw_type "`density'`fraction'`frequency'`percent'"
+	if ("`draw_type'" == "") loc draw_type "frequency"
+
+	* histogram() accepts numbers or strings. The two calls below are equivalent:
+	* sumhdfe .. a(year firm) hist(2)
+	* sumhdfe .. a(year firm) hist(firm)
+	cap confirm integer number `fe'
+	if (c(rc)) {
+		mata: st_local("fe_name", strofreal(selectindex(HDFE_Compact.absvars :== "`fe'")))
+	}
+
+	if ("`xtitle'" == "") loc xtitle "Number of observations per `fe_name'"
+
+	mata: st_local("fe_name", HDFE_Compact.absvars[`fe'])
 	mata: fe_histogram(HDFE_Compact, `fe')
-	histogram sumhdfe_hist, freq start(0) width(1) discrete xtitle("Number of obs. per group")
+	histogram sumhdfe_hist, `draw_type' start(`start') width(`width') discrete xtitle(`"`xtitle'"') `options'
 end
 
 
