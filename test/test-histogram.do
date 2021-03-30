@@ -6,6 +6,7 @@ clear all
 cls
 
 sysuse auto
+sumhdfe price weight, a(turn trunk#foreign)
 sumhdfe price weight, a(turn trunk#foreign) histogram(2, nodraw)
 sumhdfe price weight, a(turn trunk#foreign) histogram(1, percent)
 sumhdfe price weight, a(turn trunk#foreign) histogram(trunk#foreign, nodraw)

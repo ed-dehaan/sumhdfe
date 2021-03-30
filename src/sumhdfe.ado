@@ -1,4 +1,4 @@
-*! version 0.9.1 30mar2021
+*! version 0.9.2 30mar2021
 
 program define sumhdfe
 	* version 14 // set minimum version
@@ -202,7 +202,7 @@ program define Inner
 	* -syntax- CANNOT have varlist
 	* otherwise, it will convert "1b.race .race" into "i(1 2)b1.race" which messes up all further code
 	syntax [anything], ///
-		histogram(string) ///
+		[histogram(string)] ///
 		[Statistics(string) BASEVars KEEPMissings] ///
 		[tables(string)] ///
 		[VARwidth(integer 16) format(string)] ///
@@ -307,13 +307,17 @@ program Histogram
 	* sumhdfe .. a(year firm) hist(firm)
 	cap confirm integer number `fe'
 	if (c(rc)) {
-		mata: st_local("fe_name", strofreal(selectindex(HDFE_Compact.absvars :== "`fe'")))
+		loc fe_name "`fe'"
+		mata: st_local("fe_number", strofreal(selectindex(HDFE_Compact.absvars :== "`fe_name'")))
+	}
+	else {
+		loc fe_number `fe'
+		mata: st_local("fe_name", HDFE_Compact.absvars[`fe_number'])
 	}
 
 	if ("`xtitle'" == "") loc xtitle "Number of observations per `fe_name'"
 
-	mata: st_local("fe_name", HDFE_Compact.absvars[`fe'])
-	mata: fe_histogram(HDFE_Compact, `fe')
+	mata: fe_histogram(HDFE_Compact, `fe_number')
 	histogram sumhdfe_hist, `draw_type' start(`start') width(`width') discrete xtitle(`"`xtitle'"') `options'
 end
 
