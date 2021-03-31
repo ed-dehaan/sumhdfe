@@ -102,7 +102,7 @@ Panel B provides summary statistics for the *fixed effects* themselves.
 	 - There are 39 unique years within the _year_ fixed effects, 8 of which are singletons.
 	 - Iterating across both _firm_ and _year_ eliminates 2 more "joint singletons," for a total of 38 singletons eliminated from the `reghdfe` output.
 
-### Panel C - Fixed effect within group variation 
+### Panel C - Groups without any within-fixed-effect variation 
 
 Panel C quantifies how often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully evaluated.
 
