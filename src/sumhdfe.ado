@@ -1,4 +1,4 @@
-*! version 0.9.2 30mar2021
+*! version 0.9.3 14apr2021
 
 program define sumhdfe
 	* version 14 // set minimum version
@@ -327,6 +327,8 @@ program Post, rclass
 	cap return matrix fes = sumhdfe_fes
 	cap return matrix zero_variation = sumhdfe_zero_variation
 	cap return matrix rss = sumhdfe_variation
+	cap return scalar num_singletons = r(num_singletons)
+	cap return local fraction_singletons = r(fraction_singletons)
 end
 
 
@@ -349,7 +351,7 @@ program Replay
 		matlist r(fes), border(top bottom) rowtitle(Fixed Effect) noblank nohalf ///
 			cspec(& %`varwidth's | %12.0fc & %12.0fc & %12.0fc | %8.0fc & %10.2fc & %8.0fc &) rspec(||`spaces'|&|) ///
 			showcoleq(combined) aligncolnames(center)
-		mata: printf("{txt}Note: there are %g singletons (%3.1f%s of all observations)\n", HDFE_Compact.num_singletons, 100*HDFE_Compact.num_singletons/(HDFE_Compact.N+HDFE_Compact.num_singletons), "%")
+		di as text "Note: there are `r(num_singletons)' singletons (`r(fraction_singletons)'% of all observations)"
 	}
 
 
@@ -521,6 +523,9 @@ void summarize_fes(class FixedEffects scalar HDFE, class FixedEffects scalar HDF
 	st_matrix("sumhdfe_fes", output)
 	st_matrixrowstripe("sumhdfe_fes", rowstripe)
 	st_matrixcolstripe("sumhdfe_fes", colstripe)
+
+	st_numscalar("r(num_singletons)", HDFE.num_singletons)
+	st_global("r(fraction_singletons)", sprintf("%3.1f", 100*HDFE.num_singletons/(HDFE.N+HDFE.num_singletons)))
 }
 
 
