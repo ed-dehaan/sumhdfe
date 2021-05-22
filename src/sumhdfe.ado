@@ -1,4 +1,4 @@
-*! version 0.9.3 14apr2021
+*! version 0.9.4 22may2021
 
 program define sumhdfe
 	* version 14 // set minimum version
@@ -18,7 +18,7 @@ program Cleanup
 	cap mata: mata drop HDFE_*
 	cap mata: mata drop sumhdfe_*
 	cap matrix drop sumhdfe*
-	cap drop sumhdfe_hist*
+	version 14: cap drop sumhdfe_hist* // need to use version control else -drop- clears r() including our matrices
 	if (`rc') exit `rc'
 end
 
