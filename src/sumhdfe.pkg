@@ -1,15 +1,14 @@
 v 3
 
-d SUMHDFE: one liner here
+d SUMHDFE: summary and diagnostic information for linear models with fixed effect
 d
 d Authors:
 d Ed deHaan. Foster School of Business, University of Washington
 d Ties de Kok. Foster School of Business, University of Washington
 d Sergio Correia. Board of Governors of the Federal Reserve System
 d
-d DESCRIPTION HERE
-d
-d Mention online help and relevant papers here
+d Sumhdfe is a Stata package that produces summary and diagnostic information of linear fixed effect models.
+d For more information, see https://github.com/ed-dehaan/sumhdfe
 d
 d KW: fixed effects
 d KW: panel data
@@ -28,4 +27,10 @@ d
 
 f sumhdfe.ado
 f sumhdfe_tabstat.ado
+
+f sumhdfe_export.ado
+f sumhdfe_export_rtf.ado
+f sumhdfe_export_tex.ado
+
 f sumhdfe.sthlp
+f sumhdfe_export.sthlp

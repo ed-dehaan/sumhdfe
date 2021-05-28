@@ -2,7 +2,7 @@ v 3
 d Ed deHaan. Foster School of Business, University of Washington
 d Ties de Kok. Foster School of Business, University of Washington
 d Sergio Correia. Board of Governors of the Federal Reserve System
-p sumhdfe SUMHDFE - one liner here
+p sumhdfe SUMHDFE - summary and diagnostic information for linear models with fixed effect
 
 * l word-to-show path-or-url [description]
 * t: Directories within site:

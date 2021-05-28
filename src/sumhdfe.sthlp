@@ -1,10 +1,10 @@
 {smcl}
-{* *! version 0.9.1 30mar2021}{...}
-{vieweralsosee "reghdfe" "help reghdfe"}{...}
+{* *! version 0.9.5 28may2021}{...}
+{vieweralsosee "sumhdfe_export" "help sumhdfe_export"}{...}
 {vieweralsosee "" "--"}{...}
+{vieweralsosee "reghdfe" "help reghdfe"}{...}
 {vieweralsosee "ivreghdfe" "help ivreghdfe"}{...}
 {vieweralsosee "ppmlhdfe" "help ppmlhdfe"}{...}
-{vieweralsosee "sumhdfe" "help sumhdfe"}{...}
 {vieweralsosee "tabstat" "help tabstat"}{...}
 {vieweralsosee "ftools" "help ftools"}{...}
 {vieweralsosee "" "--"}{...}
@@ -78,7 +78,7 @@
 {cmd:sumhdfe} produces summary and diagnostic information to characterize within-fixed-effect variation in regression variables.
 See
 {browse "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777":deHaan (2021)}
-for discussion of within-fixed-effect variation and for explanation of the diagnostics produced by sumhdfe. 
+for discussion of within-fixed-effect variation and for explanation of the diagnostics produced by sumhdfe.
 
 
 {pstd}
@@ -131,7 +131,10 @@ The default {cmd:sumhdfe} output includes four Panels:
 {phang2}  2. Using R-squared: reports the unadjusted r-squared of regressing each regressor on each individual FE grouping and the full set of FE groupings (labeled "R2 overall). {p_end}
 {phang3}     - Technical note: in a dataset without singletons, the square root of the within-standard-deviation is equal to the R2-overall. The two differ in datasets with singletons due to the "n" adjustment in the standard deviation denominator.  
 {p_end}
-		
+
+{pstd}
+To save the tables to a file (tex/latex, rtf/word, etc.), see {help sumhdfe_export}.
+
 
 {marker options}{...}
 {title:Options}
