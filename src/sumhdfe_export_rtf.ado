@@ -20,13 +20,16 @@ prog sumhdfe_export_rtf
 	tempname handle
 
 	* Title page
-	rtfopen `handle' using "`filename'", replace paper(us) template(minimal) margins(1800 1800 1500 1500)
-	if (`standalone') {
+	
+	rtfopen `handle' using "`filename'", replace paper(usland) template(minimal) landscape margins(1800 1800 1500 1500)
+	
+	if (`standalone') {		
 		file write `handle' "\b \fs36 SUMHDFE - Fixed Effects Diagnostics \b0 \fs30 \line\line Created by: \line\line Sergio Correia \line Ed deHaan \line Ties de Kok \line \line \line Using \b SUMHDFE \b0 in your paper? Please cite: \line \line \i deHaan, Ed. (2021). Using and Interpreting Fixed Effects Models. SSRN Working Paper \i0 \line \line https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777 \fs24"
-	}
-	rtfsect `handle', paper(usland) landscape
-	rtfclose `handle'
-
+		rtfsect `handle', paper(usland) landscape
+	} 
+	
+	rtfclose `handle'	
+		
 	* Panel A
 	if (`show_a') {
 		loc colnames : colnames `a'
@@ -48,6 +51,7 @@ prog sumhdfe_export_rtf
 			varwidth(10) modelwidth(10) ///
 			title("\b \line Panel A: Summary statistics of regression variables \line \b0") ///
 			addnotes("Note 1: Singleton observations are included in these statistics. \b0 \trrh100")
+			
 		rtfappend `handle' using "`filename'", replace
 		file write `handle' "\page" _n
 		rtfclose `handle'

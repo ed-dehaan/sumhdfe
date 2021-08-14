@@ -239,5 +239,5 @@ If you have questions or experience problems please use the [issues](https://git
 
 Known bugs:
 
-- The RTF file might have blank pages in the beginning or end if only a selection of panels are returned. 
+- ~~The RTF file might have blank pages in the beginning or end if only a selection of panels are returned.~~
 
