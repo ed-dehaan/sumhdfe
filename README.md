@@ -2,24 +2,30 @@
    <img src="https://i.imgur.com/krmdzHa.png" alt="sumhdfe" title="sumhdfe" />
 </h1>
 
-**Sumhdfe** is a Stata package that produces summary and diagnostic information of linear fixed effect models. It shows:
-- The frequency of fixed effects
-- How many groups (e.g., firms) have no variation within fixed effects  
-- The residual within-fixed-effect variation of the regression variables
+**Sumhdfe** is a Stata package that produces summary and diagnostic information of linear fixed effect models. 
 
-**It is currently in beta version, so all comments and suggestions are welcome.**
+You can use `sumhdfe` to:
 
-For a discussion of within-fixed-effect variation, and the underlying issues that sumhdfe addresses, see [deHaan (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777). Similarly, if you find these diagnostics to be useful, please cite:
+- Check the frequency of fixed effects
+- Check the number of groups that have no variation within fixed effects 
+- Check the residual within-fixed-effect variation of the regression variables
+- Generate publication-ready Word and Latex tables for all fixed-effects diagnostics
 
-> **deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*. ** 
+***Sumhdfe is currently in beta version and we welcome comments and suggestions in the `issue` tab!***
+
+For a discussion on the issues that `sumhdfe` addresses, see [deHaan (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3699777).    
+Similarly, if you find these diagnostics to be useful, please cite:
+
+> deHaan, Ed. (2021). *Using and Interpreting Fixed Effects Models*.   
 > Available at SSRN: https://ssrn.com/abstract=3699777.
+
+----
 
 ## Authors
 
 - [Sergio Correia](http://scorreia.com/)
 - [Ed deHaan](https://foster.uw.edu/faculty-research/directory/ed-dehaan/)
-- [Ties de Kok](http://www.TiesdeKok.com)
-
+- [Ties de Kok](https://www.tiesdekok.com)
 
 ## Table of contents
 
@@ -29,23 +35,29 @@ For a discussion of within-fixed-effect variation, and the underlying issues tha
 - [Changelog](#changelog)
 - [Questions?](#questions-and-bug-reports)
 
-
+---
 ## Installing sumhdfe
 
-Sumhdfe requires the latest development versions of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/) to be installed prior to installation. 
+`Sumhdfe` is an extension to [`reghdfe`](http://scorreia.com/software/reghdfe/) and requires version 6+ of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/) to work. 
 
-To install these packages and `sumhdfe`, follow the steps below:
+To install `sumhdfe` and its dependencies follow the steps below:
 
 ```stata
-cap ado uninstall ftools
-cap ado uninstall reghdfe
+* Uninstall any old versions of ftools, reghdfe, sumhdfe
+cap ado uninstall ftools     
+cap ado uninstall reghdfe     
 cap ado uninstall sumhdfe
 
-net install ftools, from("https://raw.githubusercontent.com/sergiocorreia/ftools/groupreg/src/")
-net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/reghdfe6/src/")
+* Install the most recent version of ftools, reghdfe, and sumhdfe
+net install ftools, from("https://raw.githubusercontent.com/sergiocorreia/ftools/master/src/")
+net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/master/src/")
 net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/src/")
 ```
 
+**Note:** `sumhdfe` does not work with `reghdfe` version 5, which is the version that is installed by when running `ssc install reghdfe`.   
+Make sure to use the commands above to install `reghdfe` version 6.
+
+---
 ## Usage & Features
 
 ### Example usage
@@ -68,28 +80,43 @@ Run `sumhdfe` directly.
 
 ```stata
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
-sumhdfe y x1 x2  , a(firm year)
+sumhdfe y x1 x2 , a(firm year)
 ```
+-----
+## Features
 
-## Default output
+The `sumhdfe` command will provide four panels by default:
 
-The `sumhdfe` command will provide four panels by default. 
+- [Panel A - summary statistics for the full sample](#panel-a---summary-statistics)
+- [Panel B - summary statistics for the fixed effects](#panel-b---summary-statistics-for-fixed-effects)
+- [Panel C - groups without any within-fixed-effect variation](#panel-c---groups-without-any-within-fixed-effect-variation ) 
+- [Panel D - variation lost (absorbed) due to fixed effects](#panel-d---variation-lost-absorbed-due-to-fixed-effects)
 
-### Panel A - summary statistics - reghdfe
+Additionally, `sumhdfe` can provide:
 
-Panel A provides summary statistics for the sample used in `reghdfe`.
+- [A histogram that shows the frequencies of observations within a fixed effect group](#histogram)
+- [Publication ready tables](#publication-ready-tables)
+
+---
+### Panel A - Summary statistics  
+
+Summary statistics for the sample used in `reghdfe`.   
+
+*Note:* This panel can be selected using the `sum` accronym: `panels(sum)`
 
 **Example:**
 
 <img src="https://user-images.githubusercontent.com/74987960/112763970-80f30a80-8fbb-11eb-91c7-67072f0f7da5.png" width="750">
 
 **Notes:**
--  It can be customized similar to `estat summarize`
+- It can be customized similar to `estat summarize`
 - N includes singletons, so it differs from N shown in the `reghdfe` output
+----
+### Panel B - Summary statistics for fixed effects 
 
-### Panel B - summary statistics - fixed effects 
+Summary statistics for the *fixed effects* themselves.  
 
-Panel B provides summary statistics for the *fixed effects* themselves.  
+*Note:* This panel can be selected using the `fe` accronym: `panels(fe)`
 
 **Example:**
 
@@ -101,10 +128,12 @@ Panel B provides summary statistics for the *fixed effects* themselves.
 	 - There are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. 
 	 - There are 39 unique years within the _year_ fixed effects, 8 of which are singletons.
 	 - Iterating across both _firm_ and _year_ eliminates 2 more "joint singletons," for a total of 38 singletons eliminated from the `reghdfe` output.
-
-### Panel C - Groups without any within-fixed-effect variation 
+----
+### Panel C - Groups without any within fixed effect variation 
 
 Panel C quantifies how often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully evaluated.
+
+*Note:* This panel can be selected using the `zero` accronym: `panels(zero)`
 
 **Example:**
 
@@ -116,10 +145,12 @@ Panel C quantifies how often each variable is constant within a given fixed effe
 	- Variable x1 has (623-38=) 585 observations excluding singletons. 
 	- Within the non-singleton data, 58 firms have no variation in x1; i.e., each firm has the same x1 in all years. Those 58 firms relate to 217 observations. 
 	- X1 is constant within 4 years, relating to 28 observations.
-
+---
 ### Panel D - Variation lost (absorbed) due to fixed effects
 
 Panel D shows how much variation in each variable is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
+
+*Note:* This panel can be selected using the `rss` accronym: `panels(rss)`
 
 **Example:**
 
@@ -132,25 +163,63 @@ Panel D shows how much variation in each variable is lost (or absorbed) due to t
 	- In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1. 
 		- *Technical note:  the r-squared is relative to the sample including singletons, for which the r-squared is mechanically equal to 100%.*
 
-## Optional outputs
-
+---
 ### Histogram
 
 The `histogram(#)` option tabulates the frequencies of observations within a fixed effect grouping.
 
 **Example:**
 
-For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, which in this case if firm. You can also specify the fixed effect name; for example `sumhdfe, histogram(year)`.
+For example, `sumhdfe, histogram(1)` shows the frequencies of observations for the first fixed effect grouping listed within `a(firm year)`, i.e., *firm*. You can also specify the fixed effect name; for example `sumhdfe, histogram(year)`.
 
-<img src="https://user-images.githubusercontent.com/74987960/112764325-d2e86000-8fbc-11eb-8108-6056e00656b5.png" width="500">
+<img src="https://user-images.githubusercontent.com/74987960/112764325-d2e86000-8fbc-11eb-8108-6056e00656b5.png" width="400">
+
+----
+
+### Publication ready tables
+
+All panels can be exported to a publication ready *RTF* or *Latex* table. The *RTF* table can be used in Word or Excel (by copying the contents to an Excel sheet). 
+
+To export the tables:
+
+- First run `sumhdfe`
+- Run the `sumhdfe_export` command 
+	- You can optionally specify the panels you want using "`panels(a b c d)`"
+	- For the export help file run `help sumhdfe_export`
+	- The filename you pass to `sumhdfe_export` will determine the output, use `.rtf` or `.tex`
+
+**Example 1: RTF**
+
+```stata
+reghdfe y x1 x2, a(firm year) 
+sumhdfe
+sumhdfe_export using table.rtf, panels(a b c d)
+```
+
+You can open the `.rtf` file using Word and you can copy the table to Excel as well. 
+
+**Example 2: Tex**
+```stata
+reghdfe y x1 x2, a(firm year) 
+sumhdfe
+sumhdfe_export using table.tex, panels(a b c d) standalone
+```
+
+You can render the `.tex` file using your prefered LaTeX editor (e.g., Overleaf). 
+
+----
 
 ### Additional options
 
 For additional examples and additional options, see the stata help file with `help sumhdfe`, or its [online version](http://scorreia.com/help/sumhdfe.html).
 
+
+
+----
+
 ## Pending Items
 
-1. Allow for easy export of each table to csv/excel/tex
+1. ~~Allow for easy export of each table to csv/excel/tex~~
 2. Tutorial/documentation with real-world example
 3. Add an option to visually compare the pooled- and within-fixed-effect variation in a variable. In the meantime, it can be manually done as follows:
 
@@ -163,15 +232,11 @@ fcolor(navy%70) lcolor(none)), legend(on order(1 "x1" 2 "within-FE x1"))
 ```
 <img src="https://user-images.githubusercontent.com/74987960/112765144-ae8e8280-8fc0-11eb-8723-8ce0758515e8.png" width="500">
 
-
-
-## Changelog
-
-(will be added as new versions are posted)
-
 ## Questions and bug reports
 
 If you have questions or experience problems please use the [issues](https://github.com/ed-dehaan/sumhdfe/issues) tab of this repository.
 
 Known bugs:
+
+- The RTF file might have blank pages in the beginning or end if only a selection of panels are returned. 
 

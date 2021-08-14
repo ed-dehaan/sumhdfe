@@ -130,3 +130,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# dontsync folder
+dontsync
+
+# output files
+*.rtf
+*.tex
