@@ -196,7 +196,9 @@ sumhdfe
 sumhdfe_export using table.rtf, panels(a b c d)
 ```
 
-You can open the `.rtf` file using Word and you can copy the table to Excel as well. 
+You can open the `.rtf` file using Word and you can copy the table to Excel as well.
+
+<img src="https://github.com/ed-dehaan/sumhdfe/raw/main/img/table-example-rtf.png" width=400px>
 
 **Example 2: Tex**
 ```stata
@@ -207,20 +209,20 @@ sumhdfe_export using table.tex, panels(a b c d) standalone
 
 You can render the `.tex` file using your prefered LaTeX editor (e.g., Overleaf). 
 
+<img src="https://github.com/ed-dehaan/sumhdfe/raw/main/img/table-example-latex.png" width=400px>
+
 ----
 
 ### Additional options
 
 For additional examples and additional options, see the stata help file with `help sumhdfe`, or its [online version](http://scorreia.com/help/sumhdfe.html).
 
-
-
 ----
 
 ## Pending Items
 
-1. ~~Allow for easy export of each table to csv/excel/tex~~
-2. Tutorial/documentation with real-world example
+1. ~~Allow for easy export of each table to Word/Excel/LaTeX~~
+2. Full walkthrough with real-word example
 3. Add an option to visually compare the pooled- and within-fixed-effect variation in a variable. In the meantime, it can be manually done as follows:
 
 ```stata

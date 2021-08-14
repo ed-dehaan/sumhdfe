@@ -12,4 +12,16 @@ net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/m
 
 use "https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/sumhdfe_demo_data.dta", clear
 reghdfe y x1 x2  , a(firm year) 
+sumhdfe, histogram(1)
+
+* Table, example RTF:
+
+reghdfe y x1 x2  , a(firm year) 
 sumhdfe
+sumhdfe_export using table.rtf, panels(a b c d)
+
+* Table, example latex:
+
+reghdfe y x1 x2, a(firm year) 
+sumhdfe
+sumhdfe_export using table.tex, panels(a b c d) standalone
