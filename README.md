@@ -32,7 +32,6 @@ Similarly, if you find these diagnostics to be useful, please cite:
 - [Installation](#installing-sumhdfe) 
 - [Usage & Features](#usage--features)
 - [Pending Items](#pending-items)
-- [Changelog](#changelog)
 - [Questions?](#questions-and-bug-reports)
 
 ---
@@ -102,7 +101,7 @@ Additionally, `sumhdfe` can provide:
 
 Summary statistics for the sample used in `reghdfe`.   
 
-*Note:* This panel can be selected using the `sum` accronym: `panels(sum)`
+*Note:* This panel can be selected using the `sum` accronym: `tables(sum)`
 
 **Example:**
 
@@ -116,7 +115,7 @@ Summary statistics for the sample used in `reghdfe`.
 
 Summary statistics for the *fixed effects* themselves.  
 
-*Note:* This panel can be selected using the `fe` accronym: `panels(fe)`
+*Note:* This panel can be selected using the `fe` accronym: `tables(fe)`
 
 **Example:**
 
@@ -133,7 +132,7 @@ Summary statistics for the *fixed effects* themselves.
 
 Panel C quantifies how often each variable is constant within a given fixed effect group (such as within a given firm). These observations can have unexpected effects on regression coefficients and, if numerous, should be carefully evaluated.
 
-*Note:* This panel can be selected using the `zero` accronym: `panels(zero)`
+*Note:* This panel can be selected using the `zero` accronym: `tabels(zero)`
 
 **Example:**
 
@@ -150,7 +149,7 @@ Panel C quantifies how often each variable is constant within a given fixed effe
 
 Panel D shows how much variation in each variable is lost (or absorbed) due to the fixed effects, in terms of both standard deviations and r-squared.
 
-*Note:* This panel can be selected using the `rss` accronym: `panels(rss)`
+*Note:* This panel can be selected using the `rss` accronym: `tabels(rss)`
 
 **Example:**
 
@@ -198,7 +197,7 @@ sumhdfe_export using table.rtf, panels(a b c d)
 
 You can open the `.rtf` file using Word and you can copy the table to Excel as well.
 
-<img src="https://github.com/ed-dehaan/sumhdfe/raw/main/img/table-example-rtf.png" width=400px>
+<img src="https://github.com/ed-dehaan/sumhdfe/raw/main/img/table-example-rtf.png" width=700px>
 
 **Example 2: Tex**
 ```stata
@@ -209,13 +208,13 @@ sumhdfe_export using table.tex, panels(a b c d) standalone
 
 You can render the `.tex` file using your prefered LaTeX editor (e.g., Overleaf). 
 
-<img src="https://github.com/ed-dehaan/sumhdfe/raw/main/img/table-example-latex.png" width=400px>
+<img src="https://github.com/ed-dehaan/sumhdfe/raw/main/img/table-example-latex.png" width=700px>
 
 ----
 
 ### Additional options
 
-For additional examples and additional options, see the stata help file with `help sumhdfe`, or its [online version](http://scorreia.com/help/sumhdfe.html).
+For additional examples and additional options, see the stata help file with `help sumhdfe` and `help sumhdfe_export`
 
 ----
 

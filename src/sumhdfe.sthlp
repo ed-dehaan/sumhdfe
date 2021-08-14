@@ -65,11 +65,11 @@
 {synopt:{opt var:width(#)}}variable width; default is {cmd:varwidth(16)}{p_end}
 {synopt:{opt f:ormat}{cmd:(%}{it:{help format:fmt}}{cmd:)}}display format for statistics; default format is {cmd:%9.0g}{p_end}
 {synopt :{opt basev:ars}}report summary statistics on base variables instead of factor or lagged variables (incompatible with {opt keepm:issings}){p_end}
-{synopt:{opt tab:les(str)}}show only a subset of the sumhdfe tables; default is {it:"fe sum zero rss"}{p_end}
-{synopt:{opt out:put}}output a consolidated summary statistics table. NOT YET FUNCTIONAL. {p_end}
+{synopt:{opt tab:les(str)}}show only a subset of the sumhdfe tables; default is {it:"fe sum zero rss"}. {it: sum} is panel A, {it: fe} is panel B, {it: zero} is panel C, and {it: rss} is panel D. {p_end}
 {synoptline}
-{p 4 6 2}Note: under the postestimation syntax, {depvar} and all [{indepvars}] from {cmd:reghdfe} are included by default unless [{varlist}] is specified. If [{varlist}] is specified, variables must be a subset of those used in the preceding regression.{p_end}
+{p 4 6 2}Note 1: under the postestimation syntax, {depvar} and all [{indepvars}] from {cmd:reghdfe} are included by default unless [{varlist}] is specified. If [{varlist}] is specified, variables must be a subset of those used in the preceding regression.{p_end}
 
+{p 4 6 2}Note 2: use {cmd:sumhdfe_export} to export the tables to latex or RTF files. You can see the documentation for the export function see {help sumhdfe_export}. The {browse "https://github.com/ed-dehaan/sumhdfe#publication-ready-tables":Github page} provides examples of the tables..{p_end}
 
 {marker description}{...}
 {title:Description}
