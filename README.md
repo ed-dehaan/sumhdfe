@@ -37,7 +37,7 @@ Similarly, if you find these diagnostics to be useful, please cite:
 ---
 ## Installing sumhdfe
 
-`Sumhdfe` is an extension to [`reghdfe`](http://scorreia.com/software/reghdfe/) and requires version 6+ of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/) to work. 
+`Sumhdfe` is an extension to [`reghdfe`](http://scorreia.com/software/reghdfe/) and requires version 6+ of [`reghdfe`](http://scorreia.com/software/reghdfe/) and [`ftools`](https://github.com/sergiocorreia/ftools/) to work. In order to generate .rtf files you also need to have `rtfutil` installed. 
 
 To install `sumhdfe` and its dependencies follow the steps below:
 
@@ -51,6 +51,9 @@ cap ado uninstall sumhdfe
 net install ftools, from("https://raw.githubusercontent.com/sergiocorreia/ftools/master/src/")
 net install reghdfe, from("https://raw.githubusercontent.com/sergiocorreia/reghdfe/master/src/")
 net install sumhdfe, from("https://raw.githubusercontent.com/ed-dehaan/sumhdfe/master/src/")
+
+* To generate rtf files you also need to install rtfutil
+ssc install rtfutil
 ```
 
 **Note:** `sumhdfe` does not work with `reghdfe` version 5, which is the version that is installed by when running `ssc install reghdfe`.   
