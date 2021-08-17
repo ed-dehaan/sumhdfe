@@ -111,7 +111,7 @@ Summary statistics for the sample used in `reghdfe`.
 **Notes:**
 - It can be customized similar to `estat summarize`
 - N includes singletons, so it differs from N shown in the `reghdfe` output
-- When using the `tables(str)` option, this panel can be selected using the `sum` accronym: `tables(sum)`
+- When using the `panels(str)` option, this panel can be selected using the `sum` accronym: `panels(sum)`
 ----
 ### Panel B - Summary statistics for fixed effects 
 
@@ -127,7 +127,7 @@ Summary statistics for the *fixed effects* themselves.
 	 - There are 189 unique firms within the _firm_ fixed effects, 28 of which are singletons (i.e., appear just once). An individual firm has between 1 and 8 observations. 
 	 - There are 39 unique years within the _year_ fixed effects, 8 of which are singletons.
 	 - Iterating across both _firm_ and _year_ eliminates 2 more "joint singletons," for a total of 38 singletons eliminated from the `reghdfe` output.
-- When using the `tables(str)` option, this panel can be selected using the `fe` accronym: `tables(fe)`
+- When using the `panels(str)` option, this panel can be selected using the `fe` accronym: `panels(fe)`
 ----
 ### Panel C - Groups without any within fixed effect variation 
 
@@ -143,7 +143,7 @@ Panel C quantifies how often each variable is constant within a given fixed effe
 	- Variable x1 has (623-38=) 585 observations excluding singletons. 
 	- Within the non-singleton data, 58 firms have no variation in x1; i.e., each firm has the same x1 in all years. Those 58 firms relate to 217 observations. 
 	- X1 is constant within 4 years, relating to 28 observations.
-- When using the `tables(str)` option, this panel can be selected using the `zero` accronym: `tables(zero)`
+- When using the `panels(str)` option, this panel can be selected using the `zero` accronym: `panels(zero)`
 ---
 ### Panel D - Variation lost (absorbed) due to fixed effects
 
@@ -159,7 +159,7 @@ Panel D shows how much variation in each variable is lost (or absorbed) due to t
 	- The standard deviation of x1 is 79.7 in the pooled sample (as also showed in Panel A), but the within-fixed-effect standard deviation of x1 is 22.7. Thus, the within-fixed effect variation of x1 is roughly 28.4% of the pooled sample. 
 	- In terms of r-squared, the firm fixed effects explain roughly 87% of the variation in x1 while the year fixed effects explain roughly 13%. Combined, the fixed effects explain 92.4% of the variation in x1. 
 		- *Technical note:  the r-squared is relative to the sample including singletons, for which the r-squared is mechanically equal to 100%.*
-- When using the `tables(str)` option, this panel can be selected using the `rss` accronym: `tables(rss)`
+- When using the `panels(str)` option, this panel can be selected using the `rss` accronym: `panels(rss)`
 - 
 ---
 ### Histogram

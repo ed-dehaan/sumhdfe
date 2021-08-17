@@ -1,4 +1,4 @@
-*! version 0.9.5 28may2021
+*! version 0.9.5 17August2021
 
 program define sumhdfe
 	* version 14 // set minimum version
@@ -77,16 +77,16 @@ program define Main
 		* Parse sumhdfe+reghdfe (combined)
 		syntax varlist(fv ts numeric default=none) [if] [in] [fw aw pw], [*] /// passthrough to reghdfe
 			[KEEPSINgletons] /// discarded
-			[Histogram(string) TABles(string) Statistics(string) VARwidth(integer 16) format(string)] /// sumhdfe options (note that -basevars- is incompatible with -keepmissings-)
+			[Histogram(string) PANels(string) Statistics(string) VARwidth(integer 16) format(string)] /// sumhdfe options (note that -basevars- is incompatible with -keepmissings-)
 			KEEPMissings // keepmissings option
 		
-		if ("`tables'" == "") loc tables "fe sum zero rss"
-		loc show_table_fe : list posof "fe" in tables		// Fixed effects table
-		loc show_table_sum : list posof "sum" in tables		// Summary stats table
-		loc show_table_zero : list posof "zero" in tables	// Zero-variation table
-		loc show_table_rss : list posof "rss" in tables		// RSS table (residual variation)
+		if ("`panels'" == "") loc panels "fe sum zero rss"
+		loc show_table_fe : list posof "fe" in panels		// Fixed effects table
+		loc show_table_sum : list posof "sum" in panels		// Summary stats table
+		loc show_table_zero : list posof "zero" in panels	// Zero-variation table
+		loc show_table_rss : list posof "rss" in panels		// RSS table (residual variation)
 		loc fullsample_table "fes"
-		loc loop_tables : list tables - fullsample_table
+		loc loop_tables : list panels - fullsample_table
 
 		ParseVarlist `varlist' `if' `in' // updates `sumhdfe_varlist'
 		loc is_first 1
@@ -98,7 +98,7 @@ program define Main
 			mata: mata rename HDFE HDFE_Compact
 			reghdfe `var' `if' `in' [`weight'`exp'], `options' nowarn verbose(-1) nopartialout keepsingletons
 			mata: mata rename HDFE HDFE_Singletons
-			qui Inner, tables(`loop_tables') statistics(`statistics')
+			qui Inner, panels(`loop_tables') statistics(`statistics')
 			
 			if (`is_first') {
 				matrix rename r(stats) `M_stats'
@@ -123,7 +123,7 @@ program define Main
 			mata: mata rename HDFE HDFE_Compact
 			reghdfe `c' `if' `in' [`weight'`exp'], `options' nowarn verbose(-1) nopartialout keepsingletons
 			mata: mata rename HDFE HDFE_Singletons
-			qui Inner, histogram(`histogram') tables(fe)
+			qui Inner, histogram(`histogram') panels(fe)
 			matrix rename r(fes) sumhdfe_fes
 		}
 
@@ -137,7 +137,7 @@ program define Main
 		* Parse sumhdfe+reghdfe (combined)
 		syntax varlist(fv ts numeric default=none) [if] [in] [fw aw pw], [*] /// passthrough to reghdfe
 			[KEEPSINgletons] /// discarded
-			[Histogram(string) TABles(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)] // sumhdfe options
+			[Histogram(string) PANels(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)] // sumhdfe options
 		
 		* Create HDFE object that excludes singletons
 		reghdfe `varlist' `if' `in' [`weight'`exp'], `options' nowarn verbose(-1) noregress
@@ -147,14 +147,14 @@ program define Main
 		reghdfe `varlist' `if' `in' [`weight'`exp'], `options' nowarn verbose(-1) nopartialout keepsingletons
 		mata: mata rename HDFE HDFE_Singletons
 
-		loc sumhdfe_options "histogram(`histogram') tables(`tables') statistics(`statistics') `basevars' varwidth(`varwidth') format(`format')"
+		loc sumhdfe_options "histogram(`histogram') panels(`panels') statistics(`statistics') `basevars' varwidth(`varwidth') format(`format')"
 		Inner, `sumhdfe_options'
 	}
 	else if inlist("`mode'", "postestimation", "keepmata") {
 		* Parse sumhdfe
-		syntax [varlist(fv ts numeric default=none)], [Histogram(string) TABles(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)]
+		syntax [varlist(fv ts numeric default=none)], [Histogram(string) PANels(string) Statistics(string) BASEVars VARwidth(integer 16) format(string)]
 		loc sumhdfe_fullvarlist `varlist'
-		loc sumhdfe_options "histogram(`histogram') tables(`tables') statistics(`statistics') `basevars' varwidth(`varwidth') format(`format')"
+		loc sumhdfe_options "histogram(`histogram') panels(`panels') statistics(`statistics') `basevars' varwidth(`varwidth') format(`format')"
 		loc cmdline `"`e(cmdline)'"'
 
 		if ("`mode'" == "postestimation") {
@@ -204,14 +204,14 @@ program define Inner
 	syntax [anything], ///
 		[histogram(string)] ///
 		[Statistics(string) BASEVars KEEPMissings] ///
-		[tables(string)] ///
+		[panels(string)] ///
 		[VARwidth(integer 16) format(string)] ///
 
-	if ("`tables'" == "") loc tables "fe sum zero rss"
-	loc show_table_fe : list posof "fe" in tables		// Fixed effects table
-	loc show_table_sum : list posof "sum" in tables		// Summary stats table
-	loc show_table_zero : list posof "zero" in tables	// Zero-variation table
-	loc show_table_rss : list posof "rss" in tables		// RSS table (residual variation)
+	if ("`panels'" == "") loc panels "fe sum zero rss"
+	loc show_table_fe : list posof "fe" in panels		// Fixed effects table
+	loc show_table_sum : list posof "sum" in panels		// Summary stats table
+	loc show_table_zero : list posof "zero" in panels	// Zero-variation table
+	loc show_table_rss : list posof "rss" in panels		// RSS table (residual variation)
 
 	* SUMHDFE needs an intercept
 	mata: assert_msg(HDFE_Compact.has_intercept, "no intercept in absorb()", 3333, 0)

@@ -42,7 +42,7 @@ set tracedepth 4
 
 	sumhdfe price weight if _n>1, a(turn mpg) stat(N mean min max p50 sd)
 	sumhdfe price weight if _n>1, a(turn mpg) format(%8.1fc) varwidth(10)
-	sumhdfe price weight if _n>1, a(turn mpg) tables(sum) format(%8.1fc) varwidth(10)
+	sumhdfe price weight if _n>1, a(turn mpg) panels(sum) format(%8.1fc) varwidth(10)
 
 	reghdfe price weight length, a(turn)
 	sumhdfe weight mpg, a(turn)
@@ -55,7 +55,7 @@ set tracedepth 4
 	
 	sumhdfe price i.rep78, a(turn foreign)
 
-	sumhdfe price i.rep78, a(turn) tables(sum)
+	sumhdfe price i.rep78, a(turn) panels(sum)
 	sumhdfe price weight, a(turn##c.length foreign)
 
 	set varabbrev on
