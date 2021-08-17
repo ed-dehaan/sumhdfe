@@ -31,7 +31,7 @@
 {synoptline}
 {syntab:Main}
 {synopt :{opt stand:alone}}produce output with an appropriate header and footer, so the document is a standalone file. In the case of TEX output, this option adds \begin{document}, \end{document}, and so on{p_end}
-{synopt :{opt panel:s}}list the panels that will be exported. For instance, "a b" will only export panels A and B. By default, all panels (A-D) are exported{p_end}
+{synopt :{opt panel:s(str)}}list the panels that will be exported. For instance, "a b" will only export panels A and B. By default, all panels (A-D) are exported{p_end}
 {synopt :{opt l:abel}}make use of variable labels instead of variable names{p_end}
 {synopt :{opt compile}}(experimental option) compile TEX output into a PDF; implies standalone option{p_end}
 
