@@ -113,6 +113,7 @@ Summary statistics for the sample used in `reghdfe`.
 **Notes:**
 - It can be customized similar to `estat summarize`
 - N includes singletons, so it differs from N shown in the `reghdfe` output
+- When using the `tables(str)` option, this panel can be selected using the `sum` accronym: `tables(sum)`
 ----
 ### Panel B - Summary statistics for fixed effects 
 
